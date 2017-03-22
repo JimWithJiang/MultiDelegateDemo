@@ -7,9 +7,10 @@
 //
 
 #import "ViewController3.h"
-#import "Manger.h"
+#import "Manager.h"
+#import <objc/message.h>
 
-@interface ViewController3 ()<MangerDelegate>
+@interface ViewController3 ()<ManagerDelegate>
 
 @end
 
@@ -18,12 +19,16 @@
 
 - (void)dealloc{
     
-    [[Manger shareManger] deleteDelegate:self];
+    [[Manager shareManager] deleteDelegate:self];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-      [[Manger shareManger] addDelegate:self];
+    [[Manager shareManager] addDelegate:self];
+  
+    
+    
+    
     // Do any additional setup after loading the view.
 }
 
@@ -33,7 +38,7 @@
 }
 
 
-- (void)manger:(Manger *)manger didBottonClick:(UIButton *)button{
+- (void)manager:(Manager *)manager didBottonClick:(UIButton *)button{
     
     NSLog(@"我是item3，接受到了按钮点击的消息，按钮地址是%p",button);
 }

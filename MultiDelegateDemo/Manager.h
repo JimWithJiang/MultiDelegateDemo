@@ -10,26 +10,26 @@
 #import "MultiDelegate.h"
 #import <UIKit/UIKit.h>
 
-@protocol MangerDelegate;
+@protocol ManagerDelegate;
 
-@interface Manger : NSObject
+@interface Manager : NSObject
 
 - (void)reciveBottonClick:(UIButton *)button;
 
-+ (instancetype)shareManger;
++ (instancetype)shareManager;
 
-- (void)addDelegate:(id<MangerDelegate>)delegate;
+- (void)addDelegate:(id<ManagerDelegate>)delegate;
 
-- (void)deleteDelegate:(id<MangerDelegate>)delegate;
+- (void)deleteDelegate:(id<ManagerDelegate>)delegate;
 
 - (void)clearAllDelegates;
 
 @end
 
-@protocol MangerDelegate <NSObject>
+@protocol ManagerDelegate <NSObject>
 
 @optional
 
-- (void)manger:(Manger *)manger didBottonClick:(UIButton *)button;
+- (void)manager:(Manager *)manager didBottonClick:(UIButton *)button;
 
 @end

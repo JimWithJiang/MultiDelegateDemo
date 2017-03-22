@@ -92,7 +92,7 @@
         return [self methodSignatureForSelector:@selector(description)];
     }
     
-    for (id delegate in _delegates) {
+    for (id delegate in _delegates) {//存储了各个对象的代理
         if (!delegate)
             continue;
         
@@ -108,7 +108,7 @@
     SEL selector = [invocation selector];
     BOOL responded = NO;
     
-    for (id delegate in _delegates) {
+    for (id delegate in _delegates) {//遍历存储给个对象的代理，发送给每个要实现代理方法的对象
         if (delegate && [delegate respondsToSelector:selector]) {
             [invocation invokeWithTarget:delegate];
             responded = YES;

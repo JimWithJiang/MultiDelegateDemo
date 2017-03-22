@@ -7,9 +7,9 @@
 //
 
 #import "ViewController2.h"
-#import "Manger.h"
+#import "Manager.h"
 
-@interface ViewController2 ()<MangerDelegate>
+@interface ViewController2 ()<ManagerDelegate>
 
 @end
 
@@ -17,12 +17,12 @@
 
 - (void)dealloc{
     
-    [[Manger shareManger] deleteDelegate:self];
+    [[Manager shareManager] deleteDelegate:self];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-     [[Manger shareManger] addDelegate:self];
+     [[Manager shareManager] addDelegate:self];
     // Do any additional setup after loading the view.
 }
 
@@ -31,7 +31,7 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)manger:(Manger *)manger didBottonClick:(UIButton *)button{
+- (void)manager:(Manager *)manger didBottonClick:(UIButton *)button{
     
     NSLog(@"我是item2，接受到了按钮点击的消息，按钮地址是%p",button);
 }

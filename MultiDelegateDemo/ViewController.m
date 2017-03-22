@@ -7,9 +7,9 @@
 //
 
 #import "ViewController.h"
-#import "Manger.h"
+#import "Manager.h"
 
-@interface ViewController ()<MangerDelegate>
+@interface ViewController ()<ManagerDelegate>
 
 @end
 
@@ -19,17 +19,17 @@
 
 - (void)dealloc{
     
-     [[Manger shareManger] deleteDelegate:self];
+     [[Manager shareManager] deleteDelegate:self];
 }
 
 - (IBAction)bottonClick:(UIButton *)sender {
     
-    [[Manger shareManger] reciveBottonClick:sender];
+    [[Manager shareManager] reciveBottonClick:sender];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [[Manger shareManger] addDelegate:self];
+    [[Manager shareManager] addDelegate:self];//manger是一个对管理者，在里面实现了代理的添加与删除，具体实现见demo
     // Do any additional setup after loading the view, typically from a nib.
 }
 
@@ -39,7 +39,7 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)manger:(Manger *)manger didBottonClick:(UIButton *)button{
+- (void)manager:(Manager *)manger didBottonClick:(UIButton *)button{
     
     NSLog(@"我是item1，接受到了按钮点击的消息，按钮地址是%p",button);
 }

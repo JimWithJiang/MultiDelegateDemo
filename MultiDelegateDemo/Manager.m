@@ -6,32 +6,32 @@
 //  Copyright © 2017年 JiangMing. All rights reserved.
 //
 
-#import "Manger.h"
+#import "Manager.h"
 
-@interface Manger()
+@interface Manager()
 
 {
-    MultiDelegate<MangerDelegate>     *_multiDelegate;
+    MultiDelegate<ManagerDelegate>     *_multiDelegate;
     
 }
 
 @end
 
-@implementation Manger
+@implementation Manager
 
-+ (instancetype)shareManger{
-    static Manger *manger = nil;
++ (instancetype)shareManager{
+    static Manager *manager = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        manger = [[self alloc] init];
+        manager = [[self alloc] init];
     });
-    return manger;
+    return manager;
 }
 
 
 - (id)init {
     if (self = [super init]) {
-        _multiDelegate = (MultiDelegate<MangerDelegate> *)[[MultiDelegate alloc] init];
+        _multiDelegate = (MultiDelegate<ManagerDelegate> *)[[MultiDelegate alloc] init];
         _multiDelegate.silentWhenEmpty = YES;
     }
     return self;
@@ -39,13 +39,13 @@
 
 
 #pragma mark - Public Methods
-- (void)addDelegate:(id<MangerDelegate>)delegate{
+- (void)addDelegate:(id<ManagerDelegate>)delegate{
     if (delegate && ![_multiDelegate.delegates.allObjects containsObject:delegate]) {
         [_multiDelegate addDelegate:delegate];
     }
 }
 
-- (void)deleteDelegate:(id<MangerDelegate>)delegate{
+- (void)deleteDelegate:(id<ManagerDelegate>)delegate{
     [_multiDelegate removeDelegate:delegate];
 }
 
@@ -56,7 +56,7 @@
 
 - (void)reciveBottonClick:(UIButton *)button{
     
-    [_multiDelegate manger:self didBottonClick:button];
+    [_multiDelegate manager:self didBottonClick:button];
 }
 
 
